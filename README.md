@@ -1,4 +1,4 @@
-# RHCP Quadrifilar Helix Antenna for 868 MHz
+# Quadrifilar Helix Antenna for 868 MHz
 Quadrifilar Helix Antenna is omnidirectional circularly polarized antenna. It's ability to receive or transmit a tight beam of
 circularly polarized radiation while minimizing unwanted radiation perfect fits especially for satellite communication. This 3D model helps to achieve correct shape of antenna segments which has crucial effect for correct circular polarization.
 
