@@ -22,5 +22,8 @@ Antenna spectral characteristic
 Calculated in:
 http://jcoppens.com/ant/qfh/calc.en.php
 
+<b>Warning. 3D model add parasitic capacity to antenna which moves resonant frequency. This was corrected by calculating antenna for higher frequeny (913 MHz). Changing any parameter must be verified by measurement.</b>
+https://github.com/cernohorsky/QFH-Antenna-868MHz/blob/master/pictures/QFH-Antenna-868MHz-Param.jpg
+
 Original 3D model:
 http://www.thingiverse.com/thing:634205
