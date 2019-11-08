@@ -41,11 +41,6 @@ pedestal_height = 1;   // designed for use the MLAB standard 12mm screws.
 mount_hole = 3.5;
 clear = 0.175;
 
-MLAB_grid_xoffset = 4.2;
-MLAB_grid_yoffset = 4.2;
-MLAB_grid = 10.16;
-
-
 // some internal calculations. quite hairy math.
 THETA1 = atan2(HH1,D1*PI); // Thetas are used for projecting the wirechannel cross-section onto the xy-plane.
 THETA2 = atan2(HH2,D2*PI);
@@ -63,8 +58,8 @@ nY = 5;
 nX = 5;
 
 
-meshX=100;
-meshY=100;
+meshX=D1*1.1;
+meshY=D2*1.1;
 
 // width of solid part of grid
 meshSolid=1.2;
@@ -183,7 +178,7 @@ module composite()
 			translate([0,0,HWIRE22+CYLH2]) cube([WIRE,CYLH,CYLH], center=true);
 		}
 	}
-	translate([-50,-50,0])
+	translate([-meshX/2,-meshY/2,0])
 		base();
 }
 
