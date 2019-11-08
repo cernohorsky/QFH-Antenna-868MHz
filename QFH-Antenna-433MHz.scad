@@ -35,7 +35,7 @@ HWIRE12 = CYLH2-HH2/2;
 HWIRE21 = CYLH2+HH1/2;
 HWIRE22 = CYLH2+HH2/2;
 
-EXTRUSION_WIDTH=0.6;
+EXTRUSION_WIDTH=0.67;
 
 pedestal_height = 1;   // designed for use the MLAB standard 12mm screws.
 mount_hole = 3.5;
