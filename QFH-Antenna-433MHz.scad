@@ -19,10 +19,10 @@ $fn=200;
 
 PI = 3.14159265358979;
 
-D1 = 110.1; // mm large helix1 diameter.
-D2 = 104.7; // mm small helix2 diameter.
-HH1 = 146.9; // mm height of helix1.
-HH2 = 139.6; // mm height of helix2.
+D1 = 117.3; // mm large helix1 diameter.
+D2 = 111.5; // mm small helix2 diameter.
+HH1 = 146.7; // mm height of H1.
+HH2 = 139.4; // mm height of H2.
 
 WIRE = 1; // mm diameter.
 
