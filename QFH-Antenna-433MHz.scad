@@ -110,10 +110,10 @@ module wirechannel()
 {
 	difference()
 	{
-		cylinder(h=2, r=WIRE*0.8, center=true);
+        translate([-0.5,0,0])
+		cube(size = [2*WIRE, 2*WIRE,2], center=true);
 
-		translate([0,0,-0.1])
-            cylinder(h=3, r=WIRE/2, center=true);
+        cylinder(h=2, d=WIRE, center=true);
 
 		translate([1.5*WIRE,0,0])
             cube([3*WIRE,WIRE,4], center=true);
