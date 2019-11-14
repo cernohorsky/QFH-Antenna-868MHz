@@ -30,6 +30,9 @@ CYLH = 150; // mm height of support cylinder.
 CYLH2 = CYLH/2; // the half-height of the support cylinder.
 SLICES = 20;
 
+lightening_hole_size = (D1 * PI)/10;
+lightening_hole_num = floor(CYLH/lightening_hole_size);
+
 HWIRE11 = CYLH2-HH1/2; // place the four hole-pairs at these heights.
 HWIRE12 = CYLH2-HH2/2;
 HWIRE21 = CYLH2+HH1/2;
@@ -176,21 +179,28 @@ module composite()
 
 			translate([0,0,HWIRE21+CYLH2]) cube([CYLH,WIRE,CYLH], center=true);
 			translate([0,0,HWIRE22+CYLH2]) cube([WIRE,CYLH,CYLH], center=true);
+
+            for (i=[1:lightening_hole_num-1]) {
+                translate([0,0,i*lightening_hole_size])
+                    rotate([0,0, 45 + i * (180/lightening_hole_num)])
+                        rotate([45,0,0])
+                            cube(size = [D1,lightening_hole_size,lightening_hole_size],center=true);
+
+            }
+
+            for (i=[1:lightening_hole_num-1]) {
+                translate([0,0,i*lightening_hole_size])
+                    rotate([0,0, -45 + i * (180/lightening_hole_num)])
+                        rotate([45,0,0])
+                            cube(size = [D1,lightening_hole_size,lightening_hole_size],center=true);
+
+            }
+
+
 		}
 	}
 	translate([-meshX/2,-meshY/2,0])
 		base();
-}
-
-module drillholes()
-{
-	// lower hole pairs.
-	translate([0,0,HWIRE11]) rotate([0,90,0]) cylinder(h=3*HH1, r=WIRE/3, center=true);
-	translate([0,0,HWIRE12]) rotate([90,0,0]) cylinder(h=3*HH1, r=WIRE/3, center=true);
-
-	// upper hole pairs.
-	translate([0,0,HWIRE21]) rotate([0,90,0]) cylinder(h=3*HH1, r=WIRE/3, center=true);
-	translate([0,0,HWIRE22]) rotate([90,0,0]) cylinder(h=3*HH1, r=WIRE/3, center=true);
 }
 
 //wirechannel();
@@ -198,7 +208,6 @@ module drillholes()
 //helix1(rot1=180);
 //helix2(rot2=90);
 //helix2(rot2=270);
-//drillholes();
 //ellipse_base();
 //base();
 
