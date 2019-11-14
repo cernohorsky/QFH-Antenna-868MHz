@@ -15,7 +15,7 @@
 // -------------------------------------------------------------
 
 
-$fn=200;
+$fn=20;
 
 PI = 3.14159265358979;
 
@@ -28,7 +28,7 @@ WIRE = 1; // mm diameter.
 
 CYLH = 150; // mm height of support cylinder.
 CYLH2 = CYLH/2; // the half-height of the support cylinder.
-SLICES = 150;
+SLICES = 20;
 
 HWIRE11 = CYLH2-HH1/2; // place the four hole-pairs at these heights.
 HWIRE12 = CYLH2-HH2/2;
@@ -73,11 +73,11 @@ meshSpaceY = (meshY - meshSolid*nY)/nY;
 module base(){
     union()
     {
-        for (i=[1:nX-1]) {
+        for (i=[0:nX]) {
                  translate([i*(meshSolid+meshSpaceX) - meshSolid/2,0,0]) cube(size=[meshSolid, meshY, pedestal_height],center=false);
         }
 
-        for (i=[1:nY-1]) {
+        for (i=[0:nY]) {
                 translate([0,i*(meshSolid+meshSpaceY) - meshSolid/2,0]) cube(size=[meshX, meshSolid, pedestal_height],center=false);
 
         }
