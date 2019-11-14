@@ -19,9 +19,9 @@ $fn=20;
 
 PI = 3.14159265358979;
 
-D1 = 117.3; // mm large helix1 diameter.
-D2 = 111.5; // mm small helix2 diameter.
-HH1 = 146.7; // mm height of H1.
+D1 = 123.2; // mm large helix1 diameter.
+D2 = 117.1; // mm small helix2 diameter.
+HH1 = 146.6; // mm height of H1.
 HH2 = 139.4; // mm height of H2.
 
 WIRE = 1; // mm diameter.
@@ -30,7 +30,7 @@ CYLH = 150; // mm height of support cylinder.
 CYLH2 = CYLH/2; // the half-height of the support cylinder.
 SLICES = 20;
 
-lightening_hole_size = (D1 * PI)/10;
+lightening_hole_size = (D1 * PI)/15;
 lightening_hole_num = floor(CYLH/lightening_hole_size);
 
 HWIRE11 = CYLH2-HH1/2; // place the four hole-pairs at these heights.
@@ -180,17 +180,17 @@ module composite()
 			translate([0,0,HWIRE21+CYLH2]) cube([CYLH,WIRE,CYLH], center=true);
 			translate([0,0,HWIRE22+CYLH2]) cube([WIRE,CYLH,CYLH], center=true);
 
-            for (i=[1:lightening_hole_num-1]) {
+            for (i=[0:lightening_hole_num]) {
                 translate([0,0,i*lightening_hole_size])
-                    rotate([0,0, 45 + i * (180/lightening_hole_num)])
+                    rotate([0,0, 40 + i * (180/(lightening_hole_num))])
                         rotate([45,0,0])
                             cube(size = [D1,lightening_hole_size,lightening_hole_size],center=true);
 
             }
 
-            for (i=[1:lightening_hole_num-1]) {
+            for (i=[0:lightening_hole_num]) {
                 translate([0,0,i*lightening_hole_size])
-                    rotate([0,0, -45 + i * (180/lightening_hole_num)])
+                    rotate([0,0, -50 + i * (180/lightening_hole_num)])
                         rotate([45,0,0])
                             cube(size = [D1,lightening_hole_size,lightening_hole_size],center=true);
 
