@@ -1,34 +1,12 @@
 
-// OpenSCAD script for a 868 MHz ISM band "quadrifilar helix antenna".
+// OpenSCAD script for a "quadrifilar helix antenna".
 // The design originated in: http://www.thingiverse.com/thing:634205
-// -------------------------------------------------------------
-// Dimensions calculated with John Coppens webpage java script
-// @ http://jcoppens.com/ant/qfh/calc.en.php
-// Input params:
-// Center frequency = 913 MHz
-// Numbers of turns = 0.5
-// Length of one turn = 1
-// Bending radius = 1.5 mm
-// Conductor diameter = 0.8 mm
-// Width/height ratio = 0.44
-//
-// -------------------------------------------------------------
-
-
-$fn=20;
 
 PI = 3.14159265358979;
 
-D1 = 123.2; // mm large helix1 diameter.
-D2 = 117.1; // mm small helix2 diameter.
-HH1 = 146.6; // mm height of H1.
-HH2 = 139.4; // mm height of H2.
+include <parameters.scad>
 
-WIRE = 1; // mm diameter.
-
-CYLH = 150; // mm height of support cylinder.
 CYLH2 = CYLH/2; // the half-height of the support cylinder.
-SLICES = 20;
 
 lightening_hole_size = (D1 * PI)/15;
 lightening_hole_num = floor(CYLH/lightening_hole_size);
@@ -38,8 +16,6 @@ HWIRE12 = CYLH2-HH2/2;
 HWIRE21 = CYLH2+HH1/2;
 HWIRE22 = CYLH2+HH2/2;
 
-EXTRUSION_WIDTH=0.67;
-pedestal_height = 1;
 
 // some internal calculations. quite hairy math.
 THETA1 = atan2(HH1,D1*PI); // Thetas are used for projecting the wirechannel cross-section onto the xy-plane.
