@@ -42,10 +42,10 @@ pedestal_height = 1;
 
 $fn=20;
 
-D1 = 46.6; // mm large helix1 diameter.
-D2 = 44.3; // mm small helix2 diameter.
-HH1 = 107.8; // mm height of helix1.
-HH2 = 102.5; // mm height of helix2.
+D1 = 47.4; // mm large helix1 diameter.
+D2 = 45.1; // mm small helix2 diameter.
+HH1 = 107.9; // mm height of helix1.
+HH2 = 102.6; // mm height of helix2.
 
 WIRE = 1; // mm diameter.
 
