@@ -34,13 +34,13 @@ pedestal_height = 1;
 // Numbers of turns = 0.5
 // Length of one turn = 1
 // Bending radius = 1.5 mm
-// Conductor diameter = 0.8 mm
+// Conductor diameter = 0.6 mm
 // Width/height ratio = 0.44
 //
 // -------------------------------------------------------------
 
 
-$fn=20;
+/*$fn=20;
 
 D1 = 47.4; // mm large helix1 diameter.
 D2 = 45.1; // mm small helix2 diameter.
@@ -50,6 +50,35 @@ HH2 = 102.6; // mm height of helix2.
 WIRE = 1; // mm diameter.
 
 CYLH = 118; // mm height of support cylinder.
+
+SLICES = 20;
+EXTRUSION_WIDTH=0.67;
+pedestal_height = 1;
+*/
+
+// Dimensions calculated with John Coppens webpage java script
+// @ http://jcoppens.com/ant/qfh/calc.en.php
+// Input params:
+// Center frequency = 913 MHz
+// Numbers of turns = 0.5
+// Length of one turn = 1
+// Bending radius = 1.5 mm
+// Conductor diameter = 0.6 mm
+// Width/height ratio = 0.85
+//
+// -------------------------------------------------------------
+
+
+$fn=20;
+
+D1 = 60.1; // mm large helix1 diameter.
+D2 = 57.1; // mm small helix2 diameter.
+HH1 = 70.7; // mm height of helix1.
+HH2 = 67.2; // mm height of helix2.
+
+WIRE = 1; // mm diameter.
+
+CYLH = 80; // mm height of support cylinder.
 
 SLICES = 20;
 EXTRUSION_WIDTH=0.67;
