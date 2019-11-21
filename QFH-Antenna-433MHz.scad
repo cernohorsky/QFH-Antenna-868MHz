@@ -39,10 +39,7 @@ HWIRE21 = CYLH2+HH1/2;
 HWIRE22 = CYLH2+HH2/2;
 
 EXTRUSION_WIDTH=0.67;
-
-pedestal_height = 1;   // designed for use the MLAB standard 12mm screws.
-mount_hole = 3.5;
-clear = 0.175;
+pedestal_height = 1;
 
 // some internal calculations. quite hairy math.
 THETA1 = atan2(HH1,D1*PI); // Thetas are used for projecting the wirechannel cross-section onto the xy-plane.
@@ -87,23 +84,6 @@ module base(){
     }
 }
 
-
-// test helix1.
-module helix1(rot1=0)
-{
-	linear_extrude(height=50, twist=-XSI1-180, slices=SLICES)
-		rotate([0,0,rot1-XSI1/2]) translate([D1,0,0]) projection() scale([1,1/sin(THETA1),1]) wirechannel();
-}
-
-// test helix2.
-module helix2(rot2=90)
-{
-	color("red") linear_extrude(height=50, twist=-XSI2-180, slices=SLICES)
-		rotate([0,0,rot2-XSI2/2]) translate([D2,0,0]) projection() scale([1,1/sin(THETA2),1]) wirechannel();
-}
-
-
-
 // definition of the wire channel by CSG.
 // used for projecting outline onto the xy-plane.
 module wirechannel()
@@ -131,13 +111,6 @@ module ellipse_base()
         }
 }
 
-// just a elliptic torus.
-// (penalty for using $fn quality.)
-module torus(Rmajor=10, Rminor=1, h1=25)
-{
-	translate([0,0,h1]) scale([1,D2/D1,1]) rotate_extrude(convexity = 10) translate([Rmajor, 0, 0]) circle(r = Rminor);
-}
-
 // the composite structure of support cylinder, wire channels, holes and cut-outs.
 module composite()
 {
@@ -163,9 +136,6 @@ module composite()
 			{
 				rotate([0,0,0-XSI1/2]) projection(cut=true) ellipse_base();
 			}
-
-			// half-height marker on cylinder
-			//rotate([0,0,90]) torus(Rmajor=(D1/2-WIRE/2), Rminor=0.2, h1=CYLH2);
 		}
 		union()
 		{
