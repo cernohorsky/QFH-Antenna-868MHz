@@ -8,18 +8,17 @@ include <parameters.scad>
 
 CYLH2 = CYLH/2; // the half-height of the support cylinder.
 
-lightening_hole_size = (D1 * PI)/15;
-lightening_hole_num = floor(CYLH/lightening_hole_size);
-
 HWIRE11 = CYLH2-HH1/2; // place the four hole-pairs at these heights.
 HWIRE12 = CYLH2-HH2/2;
 HWIRE21 = CYLH2+HH1/2;
 HWIRE22 = CYLH2+HH2/2;
 
+lightening_hole_size = (D1 * PI)/15;
+lightening_hole_num = floor(CYLH/lightening_hole_size);
 
 // some internal calculations. quite hairy math.
-THETA1 = atan2(HH1,D1*PI); // Thetas are used for projecting the wirechannel cross-section onto the xy-plane.
-THETA2 = atan2(HH2,D2*PI);
+THETA1 = atan2(HH1,D1*PI/2); // Thetas are used for projecting the wirechannel cross-section onto the xy-plane.
+THETA2 = atan2(HH2,D2*PI/2);
 echo("theta1=",THETA1,"  -  theta2=",THETA2);
 
 XSI1 = ((CYLH/HH1*180)-180); // extra rotation beyond the height of helix1. half above, half below.
@@ -98,14 +97,32 @@ module composite()
 			// helix1's.
 			linear_extrude(height=HWIRE21, twist=-XSI1/2-180, slices=SLICES)
 			{
-				rotate([0,0,0-XSI1/2]) translate([D1/2,0,0]) projection() scale([1,1/sin(THETA1),1]) wirechannel();
-				rotate([0,0,180-XSI1/2]) translate([D1/2,0,0]) projection() scale([1,1/sin(THETA1),1]) wirechannel();
+				rotate([0,0,0-XSI1/2])
+                    translate([D1/2,0,0])
+                        projection()
+                            scale([1,1/sin(THETA1),1])
+                                wirechannel();
+
+				rotate([0,0,180-XSI1/2])
+                    translate([D1/2,0,0])
+                        projection()
+                            scale([1,1/sin(THETA1),1])
+                                wirechannel();
 			}
 			// helix2's.
 			linear_extrude(height=HWIRE22, twist=-XSI2/2-180, slices=SLICES)
 			{
-				rotate([0,0,90-XSI2/2]) translate([D2/2,0,0]) projection() scale([1,1/sin(THETA2),1]) wirechannel();
-				rotate([0,0,270-XSI2/2]) translate([D2/2,0,0]) projection() scale([1,1/sin(THETA2),1]) wirechannel();
+				rotate([0,0,90-XSI2/2])
+                    translate([D2/2,0,0])
+                        projection()
+                            scale([1,1/sin(THETA2),1])
+                                wirechannel();
+
+				rotate([0,0,270-XSI2/2])
+                    translate([D2/2,0,0])
+                        projection()
+                            scale([1,1/sin(THETA2),1])
+                                wirechannel();
 			}
 			// elliptic support cylinder.
 			linear_extrude(height=CYLH, twist=-XSI1/2-180, slices=SLICES)
@@ -116,19 +133,28 @@ module composite()
 		union()
 		{
 			// lower hole pairs.
-			translate([0,0,HWIRE11]) rotate([0,90,0]) cylinder(h=3*HH1, r=WIRE/2, center=true);
-			translate([0,0,HWIRE12]) rotate([90,0,0]) cylinder(h=3*HH1, r=WIRE/2, center=true);
+			translate([0,0,HWIRE11])
+                rotate([0,90,0])
+                    cylinder(h=D1, d=WIRE, center=true);
+
+			translate([0,0,HWIRE12])
+                rotate([90,0,0])
+                    cylinder(h=D2, d=WIRE, center=true);
 
 			// upper hole slots.
-			translate([0,0,HWIRE21]) rotate([0,90,0]) cylinder(h=3*HH1, r=WIRE/2, center=true);
-			translate([0,0,HWIRE22]) rotate([90,0,0]) cylinder(h=3*HH1, r=WIRE/2, center=true);
+			#translate([0,0,HWIRE21])
+                rotate([0,90,0])
+                    cylinder(h=D1, d=WIRE, center=true);
+			#translate([0,0,HWIRE22])
+                rotate([90,0,0])
+                    cylinder(h=D2, d=WIRE, center=true);
 
 			translate([0,0,HWIRE21+CYLH2]) cube([CYLH,WIRE,CYLH], center=true);
 			translate([0,0,HWIRE22+CYLH2]) cube([WIRE,CYLH,CYLH], center=true);
 
             for (i=[0:lightening_hole_num]) {
                 translate([0,0,i*lightening_hole_size])
-                    rotate([0,0, 40 + i * (180/(lightening_hole_num))])
+                    rotate([0,0, +45 - XSI1/2 + i * ((180+XSI1/2)/(lightening_hole_num))])
                         rotate([45,0,0])
                             cube(size = [D1,lightening_hole_size,lightening_hole_size],center=true);
 
@@ -136,7 +162,7 @@ module composite()
 
             for (i=[0:lightening_hole_num]) {
                 translate([0,0,i*lightening_hole_size])
-                    rotate([0,0, -50 + i * (180/lightening_hole_num)])
+                    rotate([0,0, -45 -XSI2/2 + i * ((180+XSI2/2)/lightening_hole_num)])
                         rotate([45,0,0])
                             cube(size = [D1,lightening_hole_size,lightening_hole_size],center=true);
 
@@ -150,10 +176,6 @@ module composite()
 }
 
 //wirechannel();
-//helix1(rot1=0);
-//helix1(rot1=180);
-//helix2(rot2=90);
-//helix2(rot2=270);
 //ellipse_base();
 //base();
 

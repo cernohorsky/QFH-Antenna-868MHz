@@ -76,7 +76,7 @@ D2 = 57.5; // mm small helix2 diameter.
 HH1 = 71.1; // mm height of helix1.
 HH2 = 67.6; // mm height of helix2.
 
-WIRE = 1; // mm diameter.
+WIRE = 0.8; // mm diameter.
 
 CYLH = 80; // mm height of support cylinder.
 
