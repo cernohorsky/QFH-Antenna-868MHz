@@ -1,4 +1,7 @@
 // -------------------------------------------------------------
+// Parameters valid for 433MHz ISM band antenna
+//
+// -------------------------------------------------------------
 // Dimensions calculated with John Coppens webpage java script
 // @ http://jcoppens.com/ant/qfh/calc.en.php
 // Input params:
@@ -27,6 +30,12 @@ EXTRUSION_WIDTH=0.67;
 pedestal_height = 1;
 
 */
+
+//####################################################################################
+
+// -------------------------------------------------------------
+// Parameters valid for 868MHz ISM band antenna
+//
 // Dimensions calculated with John Coppens webpage java script
 // @ http://jcoppens.com/ant/qfh/calc.en.php
 // Input params:
@@ -56,10 +65,12 @@ EXTRUSION_WIDTH=0.67;
 pedestal_height = 1;
 */
 
+// More robust lower variant
+
 // Dimensions calculated with John Coppens webpage java script
 // @ http://jcoppens.com/ant/qfh/calc.en.php
 // Input params:
-// Center frequency = 913 MHz
+// Center frequency = 907.8 MHz
 // Numbers of turns = 0.5
 // Length of one turn = 1
 // Bending radius = 1.5 mm
