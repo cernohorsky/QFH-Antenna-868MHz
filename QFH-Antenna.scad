@@ -58,54 +58,54 @@ module base(){
                 translate([0,i*(meshSolid+meshSpaceY) - meshSolid/2,0]) cube(size=[meshX, meshSolid, pedestal_height],center=false);
 
         }
-    
+
     // Addition of solid squares in corners
         translate([- meshSolid/2,- meshSolid/2,0])
         cube([CornerSquareSize,CornerSquareSize,pedestal_height]);
-        
+
         translate([nX*(meshSolid+meshSpaceX)+ meshSolid/2-CornerSquareSize,- meshSolid/2,0])
         cube([CornerSquareSize,CornerSquareSize,pedestal_height]);
-        
+
         translate([nX*(meshSolid+meshSpaceX)+ meshSolid/2-CornerSquareSize,nY*(meshSolid+meshSpaceY)+ meshSolid/2-CornerSquareSize,0])
         cube([CornerSquareSize,CornerSquareSize,pedestal_height]);
-        
+
         translate([- meshSolid/2,nY*(meshSolid+meshSpaceY)+ meshSolid/2-CornerSquareSize,0])
         cube([CornerSquareSize,CornerSquareSize,pedestal_height]);
-    
+
     // Addition of squares with thorns
-    
-    ThornsDist = 16.9706; 
-    ThornCylinderRad = 4;  
+
+    ThornsDist = 16.9706;
+    ThornCylinderRad = 4;
     ThornHeight = 10;
     ThornLowerBaseRad = 2.5;
     ThornUpperBaseRad = 0.4;
-    
-    
+
+
     translate([nX*(meshSolid+meshSpaceX)/2, nY*(meshSolid+meshSpaceY)/2,pedestal_height/2]){    // Grid center
-        
+
     translate([ThornsDist/2, ThornsDist/2,0])
         union(){
         cylinder(pedestal_height,ThornCylinderRad,ThornCylinderRad,center = true);
         translate([0,0,ThornHeight/2])
         cylinder(ThornHeight, ThornLowerBaseRad,ThornUpperBaseRad, true);
         }
-    translate([ThornsDist/2, -ThornsDist/2,0])    
+    translate([ThornsDist/2, -ThornsDist/2,0])
         union(){
         cylinder(pedestal_height,ThornCylinderRad,ThornCylinderRad,center = true);
         translate([0,0,ThornHeight/2])
         cylinder(ThornHeight, ThornLowerBaseRad,ThornUpperBaseRad, true);
         }
-        
-    translate([-ThornsDist/2, -ThornsDist/2,0])    
+
+    translate([-ThornsDist/2, -ThornsDist/2,0])
         union(){
         cylinder(pedestal_height,ThornCylinderRad,ThornCylinderRad,center = true);
         translate([0,0,ThornHeight/2])
         cylinder(ThornHeight, ThornLowerBaseRad,ThornUpperBaseRad, true);
         }
-  
-        
+
+
     }
-    
+
     }
 }
 
@@ -231,3 +231,9 @@ module composite()
 
 // MAIN()
 composite();
+
+
+// QFHBAL Dimensions
+#linear_extrude(height = 5, center = true)
+    rotate([0,0,-45])
+		  import(file = "QFHBAL01/hw/cam_profi/QFHBAL01-User_Comments.dxf");
