@@ -44,10 +44,21 @@ meshSolid=1.2;
 meshSpaceX = (meshX - meshSolid*nX)/nX;
 meshSpaceY = (meshY - meshSolid*nY)/nY;
 
+// Addition of circles with thorns - parameters
 
+    ThornsDist = 16.9706;
+    ThornCircleRad = 4;
+    ThornHeight = 10;
+    ThornLowerBaseRad = 2.5;
+    ThornUpperBaseRad = 0.4;
+
+CoaxHoleRad = 5;  // Radius of hole for coaxial cable
+
+ThornsRot = 0;  // Rotation of thorns (0 or 180)
 
 
 module base(){
+ difference(){
     union()
     {
         for (i=[0:nX]) {
@@ -72,17 +83,11 @@ module base(){
         translate([- meshSolid/2,nY*(meshSolid+meshSpaceY)+ meshSolid/2-CornerSquareSize,0])
         cube([CornerSquareSize,CornerSquareSize,pedestal_height]);
 
-    // Addition of squares with thorns
-
-    ThornsDist = 16.9706;
-    ThornCylinderRad = 4;
-    ThornHeight = 10;
-    ThornLowerBaseRad = 2.5;
-    ThornUpperBaseRad = 0.4;
-
-
-    translate([nX*(meshSolid+meshSpaceX)/2, nY*(meshSolid+meshSpaceY)/2,pedestal_height/2]){    // Grid center
-
+    // Addition of circles with thorns
+    
+    translate([nX*(meshSolid+meshSpaceX)/2, nY*(meshSolid+meshSpaceY)/2,pedestal_height/2]) // Grid center
+    rotate([0,0,ThornsRot]) 
+    {  
     translate([ThornsDist/2, ThornsDist/2,0])
         union(){
         cylinder(pedestal_height,ThornCylinderRad,ThornCylinderRad,center = true);
@@ -105,8 +110,21 @@ module base(){
 
 
     }
-
+// Hole for coaxial cable - part 1   
+ translate([nX*(meshSolid+meshSpaceX)/2, nY*(meshSolid+meshSpaceY)/2,pedestal_height/2])
+  rotate([0,0,ThornsRot])
+   translate([-16.22/2, 16.1/2,0])
+    cylinder(pedestal_height,CoaxHoleRad+meshSolid,CoaxHoleRad+meshSolid,center = true);
+    
     }
+    
+ // Hole for coaxial cable - part 2 
+  translate([nX*(meshSolid+meshSpaceX)/2, nY*(meshSolid+meshSpaceY)/2,pedestal_height/2])
+  rotate([0,0,ThornsRot])
+   translate([-16.22/2, 16.1/2,-1])
+    cylinder(pedestal_height+3,CoaxHoleRad,CoaxHoleRad,center = true);
+
+  }
 }
 
 // definition of the wire channel by CSG.
