@@ -84,10 +84,10 @@ module base(){
         cube([CornerSquareSize,CornerSquareSize,pedestal_height]);
 
     // Addition of circles with thorns
-    
+
     translate([nX*(meshSolid+meshSpaceX)/2, nY*(meshSolid+meshSpaceY)/2,pedestal_height/2]) // Grid center
-    rotate([0,0,ThornsRot]) 
-    {  
+    rotate([0,0,ThornsRot])
+    {
     translate([ThornsDist/2, ThornsDist/2,0])
         union(){
         cylinder(pedestal_height,ThornCircleRad,ThornCircleRad,center = true);
@@ -110,15 +110,15 @@ module base(){
 
 
     }
-// Hole for coaxial cable - part 1   
+// Hole for coaxial cable - part 1
  translate([nX*(meshSolid+meshSpaceX)/2, nY*(meshSolid+meshSpaceY)/2,pedestal_height/2])
   rotate([0,0,ThornsRot])
    translate([-16.22/2, 16.1/2,0])
     cylinder(pedestal_height,CoaxHoleRad+meshSolid,CoaxHoleRad+meshSolid,center = true);
-    
+
     }
-    
- // Hole for coaxial cable - part 2 
+
+ // Hole for coaxial cable - part 2
   translate([nX*(meshSolid+meshSpaceX)/2, nY*(meshSolid+meshSpaceY)/2,pedestal_height/2])
   rotate([0,0,ThornsRot])
    translate([-16.22/2, 16.1/2,-1])
@@ -203,18 +203,25 @@ module composite()
 			// lower hole pairs.
 			translate([0,0,HWIRE11])
                 rotate([0,90,0])
+                color([0,0,1])
                     cylinder(h=D1, d=WIRE, center=true);
 
 			translate([0,0,HWIRE12])
                 rotate([90,0,0])
+                color([0,1,0])
                     cylinder(h=D2, d=WIRE, center=true);
 
 			// upper hole slots.
-			#translate([0,0,HWIRE21])
+      // large loop (blue)
+			translate([0,0,HWIRE21])
                 rotate([0,90,0])
+                  color([0,0,1])
                     cylinder(h=D1, d=WIRE, center=true);
-			#translate([0,0,HWIRE22])
+
+      // small loop (green)
+			translate([0,0,HWIRE22])
                 rotate([90,0,0])
+                color([0,1,0])
                     cylinder(h=D2, d=WIRE, center=true);
 
 			translate([0,0,HWIRE21+CYLH2]) cube([CYLH,WIRE,CYLH], center=true);
@@ -253,5 +260,5 @@ composite();
 
 // QFHBAL Dimensions
 #linear_extrude(height = 5, center = true)
-    rotate([0,0,-45])
+    rotate([0,0,-45-90])
 		  import(file = "QFHBAL01/hw/cam_profi/QFHBAL01-User_Comments.dxf");
