@@ -90,20 +90,20 @@ module base(){
     {  
     translate([ThornsDist/2, ThornsDist/2,0])
         union(){
-        cylinder(pedestal_height,ThornCylinderRad,ThornCylinderRad,center = true);
+        cylinder(pedestal_height,ThornCircleRad,ThornCircleRad,center = true);
         translate([0,0,ThornHeight/2])
         cylinder(ThornHeight, ThornLowerBaseRad,ThornUpperBaseRad, true);
         }
     translate([ThornsDist/2, -ThornsDist/2,0])
         union(){
-        cylinder(pedestal_height,ThornCylinderRad,ThornCylinderRad,center = true);
+        cylinder(pedestal_height,ThornCircleRad,ThornCircleRad,center = true);
         translate([0,0,ThornHeight/2])
         cylinder(ThornHeight, ThornLowerBaseRad,ThornUpperBaseRad, true);
         }
 
     translate([-ThornsDist/2, -ThornsDist/2,0])
         union(){
-        cylinder(pedestal_height,ThornCylinderRad,ThornCylinderRad,center = true);
+        cylinder(pedestal_height,ThornCircleRad,ThornCircleRad,center = true);
         translate([0,0,ThornHeight/2])
         cylinder(ThornHeight, ThornLowerBaseRad,ThornUpperBaseRad, true);
         }
