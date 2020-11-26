@@ -54,7 +54,7 @@ meshSpaceY = (meshY - meshSolid*nY)/nY;
 
 CoaxHoleRad = 5;  // Radius of hole for coaxial cable
 
-ThornsRot = 0;  // Rotation of thorns (0 or 180)
+ThornsRot = 90;  // Rotation of thorns
 
 
 module base(){
