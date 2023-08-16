@@ -2,7 +2,10 @@
 Quadrifilar Helix Antenna is omnidirectional circularly polarized antenna. It's ability to receive or transmit a tight beam of
 circularly polarized radiation while minimizing unwanted radiation perfect fits especially for satellite communication. This 3D model helps to achieve correct shape of antenna segments which has crucial effect for correct circular polarization.
 
-Antenna is made from 2 pcs of 0.8mm silver plated copper wire, with total length 357 mm and 339.4 mm. 
+![light 3D printable QFH antenna design](pictures/QFH-Antenna.png)
+
+
+Antenna is made from 2 pcs of 0.8mm silver plated copper wire, with total length 357 mm and 339.4 mm.
 <img src="pictures/QFH-Antenna-868MHz.jpg" width="400" />
 
 Antenna feed-point
